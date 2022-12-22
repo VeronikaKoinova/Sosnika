@@ -1,0 +1,89 @@
+﻿<Page x:Class="WPFApplicationOptika.PageClient.PageViewProducts"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFApplicationOptika.PageClient"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1200"
+      Title="PageViewProducts">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                    <Label Content="Поиск по названию:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" Width="Auto"/>
+                    <TextBox x:Name="MenuClientSearch" Style="{DynamicResource MainTextBoxStyle}" HorizontalAlignment="Center" KeyUp="MenuClientSearch_KeyUp"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                    <Label Content="Сортировка:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" Width="Auto"/>
+                    <ComboBox x:Name="MenuClientSort" Style="{DynamicResource MainComboBoxStyle}" SelectionChanged="MenuClientSort_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                    <Label Content="Фильтрация:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" Width="Auto"/>
+                    <ComboBox x:Name="MenuClientFilter" Style="{DynamicResource MainComboBoxStyle}" SelectionChanged="MenuClientFilter_SelectionChanged"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="ProductsCounter" Content="Показано товаров: 0 из 0" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Left" Height="45" Width="Auto" />
+                </StackPanel>
+                <ListBox x:Name="ClientProducts" Height="300" Width="900">
+                    <ListBox.Style>
+                        <Style TargetType="ListBox">
+                            <Setter Property="FontFamily" Value="Bookman Old Style" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Height" Value="150"/>
+                        </Style>
+                    </ListBox.Style>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="600"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{Binding InsideImage}"></Image>
+                                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10, 0, 0, 0">
+                                    <TextBlock FontSize="20" FontWeight="Bold" MaxWidth="600" TextWrapping="Wrap">
+                                        <Run Text="{Binding NameProduct}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="18">
+                                        <Run Text="Код товара: "/>
+                                        <Run Text="{Binding IdProduct}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="18">
+                                        <Run Text="Цвет: "/>
+                                        <Run Text="{Binding Color}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="18">
+                                        <Run Text="Материал: "/>
+                                        <Run Text="{Binding Material}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="18">
+                                        <Run Text="Производитель: "/>
+                                        <Run Text="{Binding Manufacturers.NameManufacturer}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="18">
+                                        <Run Text="Стоимость: "/>
+                                        <Run Text="{Binding Cost}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                                <TextBlock Grid.Column="2" TextWrapping="Wrap" FontSize="18" Margin="5,0,0,0">
+                                    <Run Text="В наличии: "/>
+                                    <Run Text="{Binding InStock}"/>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="MenuClientUpdate" Style="{DynamicResource MainButtonStyle}" Content="Обновить" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5,5,5" Click="MenuClientUpdate_Click"/>
+                    <Button x:Name="MenuClientBack" Style="{DynamicResource MainButtonStyle}" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5,5,5" Click="MenuClientBack_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

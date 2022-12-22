@@ -1,0 +1,17 @@
+﻿<Window x:Class="WPFApplicationOptika.PageMain.WindowCaptcha"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApplicationOptika.PageMain"
+        mc:Ignorable="d"
+        Title="WindowCaptcha" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Margin="15" VerticalAlignment="Center">
+            <Label x:Name="TextCaptcha" Content="" FontFamily="Forte" FontStyle="Italic" FontSize="24" HorizontalAlignment="Center" IsEnabled="False" RenderTransformOrigin="0.5,0.5" Margin="10">
+            </Label>
+            <TextBox x:Name="TextBoxCAPTCHA" Text="" Style="{DynamicResource MainTextBoxStyle}"/>
+            <Button x:Name="EnterCaptcha" Content="Отправить" Style="{DynamicResource MainButtonStyle}" IsDefault="True" Click="EnterCaptcha_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

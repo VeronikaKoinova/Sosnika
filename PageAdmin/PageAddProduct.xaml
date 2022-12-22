@@ -1,0 +1,51 @@
+﻿<Page x:Class="WPFApplicationOptika.PageAdmin.PageAddProduct"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFApplicationOptika.PageAdmin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageAddProduct">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center">
+            <StackPanel Style="{DynamicResource MainStackPanelStyle}">
+                <Label Content="Название товара:" Style="{DynamicResource MainLabelStyle}"/>
+                <TextBox x:Name="AddProductNameProduct" Style="{DynamicResource MainTextBoxStyle}" Text="{Binding NameProduct}"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource MainStackPanelStyle}">
+                <Label Content="Цвет:" Style="{DynamicResource MainLabelStyle}"/>
+                <TextBox x:Name="AddProductColor" Style="{DynamicResource MainTextBoxStyle}" Text="{Binding Color}" PreviewTextInput="AddProductColor_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource MainStackPanelStyle}">
+                <Label Content="Материал:" Style="{DynamicResource MainLabelStyle}"/>
+                <TextBox x:Name="AddProductMaterial" Style="{DynamicResource MainTextBoxStyle}" Text="{Binding Material}" PreviewTextInput="AddProductMaterial_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource MainStackPanelStyle}">
+                <Label Content="Цена:" Style="{DynamicResource MainLabelStyle}"/>
+                <TextBox x:Name="AddProductCost" Style="{DynamicResource MainTextBoxStyle}" Text="{Binding Cost}" PreviewTextInput="AddProductCost_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource MainStackPanelStyle}">
+                <Label Content="В наличии:" Style="{DynamicResource MainLabelStyle}"/>
+                <TextBox x:Name="AddProductInStock" Style="{DynamicResource MainTextBoxStyle}" Text="{Binding InStock}" PreviewTextInput="AddProductInStock_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource MainStackPanelStyle}">
+                <Label Content="Производитель:" Style="{DynamicResource MainLabelStyle}"/>
+                <ComboBox x:Name="AddProductManufacturer" Style="{DynamicResource MainComboBoxStyle}"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource MainStackPanelStyle}">
+                <Label Content="Фото товара:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Style="{DynamicResource MainButtonStyle}" x:Name="AddProductImageProduct" Content="Изменить картинку" Width="280" Click="AddProductImageProduct_Click"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource MainStackPanelStyle}">
+                <Label Content="Текущее фото:" Style="{DynamicResource MainLabelStyle}" FontSize="20"/>
+                <Label x:Name="NowPicture" Content="{Binding UnitOfMeasurement}" Style="{DynamicResource MainLabelStyle}" Width="300" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Style="{DynamicResource MainStackPanelStyle}" Orientation="Horizontal">
+                <Button Style="{DynamicResource MainButtonStyle}" x:Name="AddProductPick" Content="Сохранить запись" Width="240" Click="AddProductPick_Click"/>
+                <Button Style="{DynamicResource MainButtonStyle}" x:Name="AddProductBack" Content="Назад" IsCancel="True" Click="AddProductBack_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,151 @@
+﻿<Page x:Class="WPFApplicationOptika.PageAdmin.PageAdministrator"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFApplicationOptika.PageAdmin"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="1100"
+      Title="PageAdministrator">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center">
+            <TabControl>
+                <TabItem Header="Товары" FontSize="24" FontFamily="Bookman Old Style">
+                    <Grid Background="#FFE9E9E9">
+                        <StackPanel>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                                    <Label Content="Поиск по названию:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" Width="Auto"/>
+                                    <TextBox x:Name="MenuProductsSearch" Style="{DynamicResource MainTextBoxStyle}" HorizontalAlignment="Center" KeyUp="MenuProductsSearch_KeyUp"/>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                                    <Label Content="Сортировка:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" Width="Auto"/>
+                                    <ComboBox x:Name="MenuProductsSort" Style="{DynamicResource MainComboBoxStyle}" SelectionChanged="MenuProductsSort_SelectionChanged"/>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                                    <Label Content="Фильтрация:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" Width="Auto"/>
+                                    <ComboBox x:Name="MenuProductsFilter" Style="{DynamicResource MainComboBoxStyle}" SelectionChanged="MenuProductsFilter_SelectionChanged"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label x:Name="ProductsCounter" Content="Показано товаров: 0 из 0" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Left" Height="45" Width="Auto" />
+                                </StackPanel>
+                                <ListBox x:Name="ListViewProducts" Height="300" Width="950">
+                                    <ListBox.Style>
+                                        <Style TargetType="ListBox">
+                                            <Setter Property="FontFamily" Value="Bookman Old Style" />
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="Height" Value="150"/>
+                                        </Style>
+                                    </ListBox.Style>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="600"/>
+                                                    <ColumnDefinition Width="150"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Source="{Binding InsideImage}" Width="200" Height="150"></Image>
+                                                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10, 0, 0, 0">
+                                                    <TextBlock FontSize="20" FontWeight="Bold" MaxWidth="600" TextWrapping="Wrap">
+                                        <Run Text="{Binding NameProduct}"/>
+                                                    </TextBlock>
+                                                    <TextBlock FontSize="18">
+                                        <Run Text="Код товара: "/>
+                                        <Run Text="{Binding IdProduct}"/>
+                                                    </TextBlock>
+                                                    <TextBlock FontSize="18">
+                                        <Run Text="Цвет: "/>
+                                        <Run Text="{Binding Color}"/>
+                                                    </TextBlock>
+                                                    <TextBlock FontSize="18">
+                                        <Run Text="Материал: "/>
+                                        <Run Text="{Binding Material}"/>
+                                                    </TextBlock>
+                                                    <TextBlock FontSize="18">
+                                        <Run Text="Производитель: "/>
+                                        <Run Text="{Binding Manufacturers.NameManufacturer}"/>
+                                                    </TextBlock>
+                                                    <TextBlock FontSize="18">
+                                        <Run Text="Стоимость: "/>
+                                        <Run Text="{Binding Cost}"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="2" Orientation="Vertical" Margin="10, 0, 0, 0">
+                                                    <TextBlock TextWrapping="Wrap" FontSize="18" Margin="5,0,0,0">
+                                    <Run Text="В наличии: "/>
+                                                    </TextBlock>
+                                                    <TextBlock TextWrapping="Wrap" FontSize="18" Margin="5,0,0,0">
+                                    <Run Text="{Binding InStock}"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="5">
+                                <Button x:Name="ProductsUpdate" Content="Вывести записи" Style="{DynamicResource MainButtonStyle}" Width="Auto" Click="ProductsUpdate_Click"/>
+                                <Button x:Name="ProductsAdd" Content="Добавить запись" Style="{DynamicResource MainButtonStyle}" Width="Auto" Click="ProductsAdd_Click"/>
+                                <Button x:Name="ProductsEdit" Content="Редактировать запись" Style="{DynamicResource MainButtonStyle}" Width="Auto" Click="ProductsEdit_Click"/>
+                                <Button x:Name="ProductsDelete" Content="Удалить запись" Style="{DynamicResource MainButtonStyle}" Width="Auto" Click="ProductsDelete_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Пользователи" FontSize="24" FontFamily="Bookman Old Style">
+                    <Grid Background="#FFE9E9E9">
+                        <StackPanel>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                                    <Label Content="Поиск по названию:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" Width="Auto"/>
+                                    <TextBox x:Name="MenuUsersSearch" Style="{DynamicResource MainTextBoxStyle}" HorizontalAlignment="Center" KeyUp="MenuUsersSearch_KeyUp"/>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                                    <Label Content="Сортировка:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" Width="Auto"/>
+                                    <ComboBox x:Name="MenuUsersSort" Style="{DynamicResource MainComboBoxStyle}" SelectionChanged="MenuUsersSort_SelectionChanged"/>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                                    <Label Content="Фильтрация:" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Center" Width="Auto"/>
+                                    <ComboBox x:Name="MenuUsersFilter" Style="{DynamicResource MainComboBoxStyle}" SelectionChanged="MenuUsersFilter_SelectionChanged"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label x:Name="UsersCounter" Content="Показано пользователей: 0 из 0" Style="{DynamicResource MainLabelStyle}" HorizontalAlignment="Left" Height="45" Width="Auto" />
+                                </StackPanel>
+                                <ListView x:Name="ListViewUsers" Style="{DynamicResource MainListViewStyle}" Height="300">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= IdUser}" Header="Код пользователя" Width="Auto"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= Login}" Header="Логин" Width="Auto"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= Password}" Header="Пароль" Width="Auto"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= IdRole}" Header="Код роли" Width="Auto"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= Surname}" Header="Фамилия" Width="Auto"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= Name}" Header="Имя" Width="Auto"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= MiddleName}" Header="Отчество" Width="Auto"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= DateOfBirth, StringFormat={}{0:dd/MM/yyyy}}" Header="Дата рождения" Width="Auto"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= Email}" Header="Почта" Width="Auto"/>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path= NumberPhone}" Header="Телефон" Width="Auto"/>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="5">
+                                <Button x:Name="UsersUpdate" Content="Вывести записи" Style="{DynamicResource MainButtonStyle}" Width="Auto" Click="UsersUpdate_Click"/>
+                                <Button x:Name="UsersAdd" Content="Добавить запись" Style="{DynamicResource MainButtonStyle}" Width="Auto" Click="UsersAdd_Click"/>
+                                <Button x:Name="UsersEdit" Content="Редактировать запись" Style="{DynamicResource MainButtonStyle}" Width="Auto" Click="UsersEdit_Click"/>
+                                <Button x:Name="UsersDelete" Content="Удалить запись" Style="{DynamicResource MainButtonStyle}" Width="Auto" Click="UsersDelete_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <Button x:Name="MenuAdminBack" Content="Назад" Style="{DynamicResource MainButtonStyle}" Margin="10" IsCancel="True" HorizontalAlignment="Center" VerticalAlignment="Center" Click="MenuAdminBack_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
